@@ -1,6 +1,6 @@
-import tinyReact from "../../assets/tiny-react.png";
-import tinyAngular from "../../assets/tiny-angular.png";
-import tinyVue from "../../assets/tiny-vue.png";
+import tinyReact from "../assets/imgs/tiny-react.png";
+import tinyAngular from "../assets/imgs/tiny-angular.png";
+import tinyVue from "../assets/imgs/tiny-vue.png";
 
 export const FILTERS = [
   {

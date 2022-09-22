@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
+
+$Brownish-grey: #6b6b6b;
+*, ::before, ::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+.html {
+  font-size: 16px;
+  font-family: Roboto;
+}
+
+.container{
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: auto;
+}
+
+header{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 25px;
+  box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+  padding: 25px 30px;
+  color: #3b3b3b;
+  margin-bottom: 20px;
+  @media (min-width: 1200px) {
+    font-size: 30px;
+  }
+}
+.selectbox{
+  width: 200px;
+  position: relative;
+}
+
+.select{
+    background: #fff;
+    box-shadow: 0px 0px 0px rgb(0 0 0 / 16%);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .2s ease all;
+    margin-bottom: 3px;
+    padding: 10px;
+    position: relative;
+    z-index: 200;
+    border: solid 1px #2e2e2e;
+    font-family: Roboto;
+
+    &::after{
+      content: "";
+      right: 11px;
+      top: 12px;
+      position: absolute;
+      pointer-events: none;
+      border: solid #333;
+      border-width: 0 1px 1px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+    .title {
+      padding-right: 15px;
+    }
+}
+.options {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,.16);
+  max-height: 400px;
+  overflow: auto;
+  z-index: 100;
+  width: 100%;
+  display: none;
+  position: absolute;
+  font-family: Roboto;
+  cursor: pointer;
+  &.active{
+    display: block;
+  }
+  .option-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: .2s ease all;
+    &:hover {
+      background-color: #efefef;
+    }
+  }
+  .option-content {
+    padding: 10px 0;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      margin-left: 10px;
+      object-fit: contain;
+    }
+  }
+}
+
+
+
+
+input[type="radio"]{
+  display: none;
+}
+
+.tabs {
+  display: flex;
+  list-style: none;
+  border-radius: 5px;
+  border: solid 1px #d6d6d6;
+  width: 235px;
+  margin: 0 auto;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  .tab-item{
+    padding: 10px 20px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: #fff;
+    &.all {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    &.myfaves{
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    label{
+      cursor: pointer;
+    }
+    &:hover,
+    &.active{
+      border: 1px solid #1797ff;
+      color: #1797ff;
+    }
+    &:not(:first-child){
+      padding: 10px 15px;
+      border-left: 1px solid #d6d6d6;
+      cursor: pointer;
+      &:hover,
+      &.active{
+        border-left: 1px solid #1797ff;
+      }
+    }
+  }
+}
+
+
+.items-wrapper{
+  margin-top: 25px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 0.875rem 1.5rem;
+  .itemCard {
+    padding: 0 0 0 1.625rem;
+    opacity: 0.8;
+    border-radius: 6px;
+    border: solid 1px #979797;
+    background-color: #fff;
+    display: flex;
+    &__link {
+      display: flex;
+      flex-flow: column;
+      flex: 1 1;
+      padding: 1.188rem 1.175rem 1.063rem;
+      text-decoration: none;
+    }
+    .itemTime{
+      font-family: Roboto;
+      font-size: 0.688rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #767676;
+    }
+    .itemTitle {
+      margin: 0.375rem 0 0;
+      font-family: Roboto;
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.43;
+      letter-spacing: 0.25px;
+      color: $Brownish-grey;
+    }
+    .itemLike {
+      display: flex;
+      align-items: center;
+      padding: 1.188rem 1.175rem 1.063rem;
+      background-color: #6060602b;
+      cursor: pointer;
+      img {
+        width: 1.5rem;
+        height: 1.375rem;
+        object-fit: contain;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem 1.5rem;
+  }
+}
