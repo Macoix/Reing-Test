@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { validateHits } from './helpers/validateHits';
+import { Hit } from './interfaces/hit';
+import { FILTERS } from "./const/filters";
+import { Filters } from "./interfaces/filters";
 
 function App() {
+  const [hits, setHits] = useState<Hit[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
+
+  useEffect(() => {
+    const filter = localStorage.getItem("filters")
+      ? localStorage.getItem("filters")
+      : "";
+    setQuery(filter as string);
+  }, []);
+
+  useEffect(() => {
+    const fecthData = () => {
+      fetch(
+        `https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${page}`
+      )
+        .then((response) => response.json())
+        .then((data: { hits: Hit[] }) => {
+          console.log(data.hits.filter((hit) => validateHits(hit)))
+          setHits(data.hits.filter((hit) => validateHits(hit)));
+        });
+    };
+    fecthData();
+  }, [query, page]);
+
+  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value)
+    localStorage.setItem("filters", event.target.value);
+    setQuery(event.target.value);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <select name="filter" id="filter" onChange={handleSelectChange}>
+        {FILTERS.map((item, idx) => {
+         return <option key={idx} value={item.value}>{item.value}</option>
+        })}
+      </select>
+
+      {
+        hits.map(hit => hit.author)
+      }
+    </>
   );
 }
 
