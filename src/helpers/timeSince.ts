@@ -1,3 +1,6 @@
+/**
+ * a Function that recive a string date and returns a format in minutes, hours o days.
+*/
 export function timeSince(date: string) {
   var seconds = Math.floor(
     (new Date().valueOf() - new Date(date).valueOf()) / 1000

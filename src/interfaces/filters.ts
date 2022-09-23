@@ -1,4 +1,4 @@
-export interface Filters {
+export interface Filter {
     name: string;
     value: string;
     logo?: string;
