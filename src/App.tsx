@@ -17,7 +17,7 @@ function App() {
   const [page, setPage] = useState<number>(0);
   const [favorites, setFavorites] = useState<Hit[]>([]);
   const [switchValue, setSwitchValue] = useState<string>("all");
-  const [currentSelected, setCurrentSelected] = useState("Select your news");
+  const [currentSelected, setCurrentSelected] = useState("");
 
   const { hits, totalPages, hitsPerPage, error, loading } = hitFetch(query, page);
 
@@ -28,7 +28,7 @@ function App() {
       : "";
 
     //check if the filter name is in the localStotage
-    const filterName = localStorage.getItem("filterName")
+    let filterName = localStorage.getItem("filterName")
       ? localStorage.getItem("filterName")
       : "";
 
@@ -39,6 +39,7 @@ function App() {
     if (!fav) fav = [];
     setFavorites(fav);
     setQuery(filter as string);
+    if(!filterName) filterName = "Select your news"
     setCurrentSelected(filterName as string);
   }, []);
 
