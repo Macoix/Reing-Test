@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Filters } from "../../interfaces/filters";
+import { Filter } from "../../interfaces/filters";
 
 interface selectProps {
-  filters: Filters[];
+  filters: Filter[];
   placeholder: string;
-  onChange: (filters: Filters) => void;
+  onChange: (filters: Filter) => void;
 }
 
 const Select = ({ filters, placeholder, onChange }: selectProps) => {
@@ -29,7 +29,7 @@ const Select = ({ filters, placeholder, onChange }: selectProps) => {
                   data-value={item.value}
                   onClick={() => onChange(item)}
                 >
-                  <img src={item.logo} alt={item.name} />
+                  {item?.logo && <img src={item.logo} alt={item.name} />}
                   <div className="option-title">{item.name}</div>
                 </div>
               </div>
