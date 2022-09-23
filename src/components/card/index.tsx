@@ -3,6 +3,7 @@ import { Hit } from "../../interfaces/hit";
 import { timeSince } from "../../helpers/timeSince";
 import emptyHeart from "../../assets/imgs/empty-heart.svg";
 import fullyHeart from "../../assets/imgs/fully-heart.svg";
+import clock from "../../assets/imgs/clock.svg";
 
 interface cardProps {
   hit: Hit;
@@ -20,6 +21,7 @@ const Card = ({ hit, handleLikeBtn, liked }: cardProps) => {
         rel="noreferrer"
       >
         <div className="itemTime">
+          <img src={clock} alt="clock" />
           {timeSince(hit.created_at)} by {hit.author}
         </div>
         <div className="itemTitle">{hit.story_title}</div>
